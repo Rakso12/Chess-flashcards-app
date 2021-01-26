@@ -97,7 +97,7 @@ void MainWindow::on_pushButtonBlackOption_clicked()
     if(colour == "black"){
         qDebug() << sign << "Black place, nice!";
     }
-
+    qDebug() << "nothing";
     quint32 value = randomIndex();
     QStringList tmp_places = getPlaceList();
     QStringList tmp_colours = getColoursList();
