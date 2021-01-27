@@ -1,81 +1,84 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
+#include "Chess_Flashcards.h"
+#include "ui_Chess_Flashcards.h"
 #include <QDebug>
 #include <QRandomGenerator>
 
-
-
-MainWindow::MainWindow(QWidget *parent)
+Chess_Flashcards::Chess_Flashcards(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    , ui(new Ui::Chess_Flashcards)
 {
     ui->setupUi(this);
     ui->optionLabel->setText(sign);
+    ui->progressBar->setMinimum(0);
+    ui->progressBar->setMaximum(20);
+    ui->progressBar->minimum();
 }
 
-MainWindow::~MainWindow()
+Chess_Flashcards::~Chess_Flashcards()
 {
     delete ui;
 }
 
 /*!
- * \brief MainWindow::getPlaceList
+ * \brief Chess_Flashcards::getPlaceList
  * \return QStringList with places signs
  */
-QStringList MainWindow::getPlaceList()
+QStringList Chess_Flashcards::getPlaceList()
 {
     qDebug() << "PlaceList given";
     return this->placesList;
 }
 
 /*!
- * \brief MainWindow::getColoursList
+ * \brief Chess_Flashcards::getColoursList
  * \return QStringList with places colours
  */
-QStringList MainWindow::getColoursList()
+QStringList Chess_Flashcards::getColoursList()
 {
     qDebug() << "ColoursList given";
     return this->colorsList;
 }
 
 /*!
- * \brief MainWindow::showPlaceList
+ * \brief Chess_Flashcards::showPlaceList
  * Shows elements of plase signs list
  */
-void MainWindow::showPlaceList()
+void Chess_Flashcards::showPlaceList()
 {
     qDebug() << this->placesList;
 }
 
 /*!
- * \brief MainWindow::showColourList
+ * \brief Chess_Flashcards::showColourList
  * Shows elements of places color list
  */
-void MainWindow::showColourList()
+void Chess_Flashcards::showColourList()
 {
     qDebug() << this->placesList;
 }
 
 /*!
- * \brief MainWindow::randomIndex
+ * \brief Chess_Flashcards::randomIndex
  * \return
  */
-int MainWindow::randomIndex()
+int Chess_Flashcards::randomIndex()
 {
-    quint32 value = QRandomGenerator::global()->bounded(0,65);
+    quint32 value = QRandomGenerator::global()->bounded(0,64);
 
     qDebug() << value;
     return value;
 }
 
 /*!
- * \brief MainWindow::on_pushButtonWhiteOption_clicked
+ * \brief Chess_Flashcards::on_pushButtonWhiteOption_clicked
  * pushButtonWhiteOption on click service
  */
-void MainWindow::on_pushButtonWhiteOption_clicked()
+void Chess_Flashcards::on_pushButtonWhiteOption_clicked()
 {
     if(colour == "white"){
         qDebug() << sign << "White place, nice!";
+        ++result;
+        ui->progressBar->setValue(result);
     }
 
     quint32 value = randomIndex();
@@ -89,15 +92,16 @@ void MainWindow::on_pushButtonWhiteOption_clicked()
 }
 
 /*!
- * \brief MainWindow::on_pushButtonBlackOption_clicked
+ * \brief Chess_Flashcards::on_pushButtonBlackOption_clicked
  * pushButtonBlackOption on click service
  */
-void MainWindow::on_pushButtonBlackOption_clicked()
+void Chess_Flashcards::on_pushButtonBlackOption_clicked()
 {
     if(colour == "black"){
         qDebug() << sign << "Black place, nice!";
+        ++result;
+        ui->progressBar->setValue(result);
     }
-    qDebug() << "nothing";
     quint32 value = randomIndex();
     QStringList tmp_places = getPlaceList();
     QStringList tmp_colours = getColoursList();
@@ -109,10 +113,10 @@ void MainWindow::on_pushButtonBlackOption_clicked()
 }
 
 /*!
- * \brief MainWindow::on_pushButtonShowBoard_clicked
+ * \brief Chess_Flashcards::on_pushButtonShowBoard_clicked
  * pushButtonShowBoard on click service
  */
-void MainWindow::on_pushButtonShowBoard_clicked()
+void Chess_Flashcards::on_pushButtonShowBoard_clicked()
 {
     qDebug() << "Lista pól:";
     this->showPlaceList();

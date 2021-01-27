@@ -1,10 +1,10 @@
-#include "mainwindow.h"
+#include "Chess_Flashcards.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
+    Chess_Flashcards w;
     w.show();
     return a.exec();
 }

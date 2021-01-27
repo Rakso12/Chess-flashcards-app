@@ -1,20 +1,20 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef CHESS_FLASHCARDS_H
+#define CHESS_FLASHCARDS_H
 
 #include <QMainWindow>
 #include <QStringList>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui { class Chess_Flashcards; }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
+class Chess_Flashcards : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    Chess_Flashcards(QWidget *parent = nullptr);
+    ~Chess_Flashcards();
     QStringList getPlaceList();
     QStringList getColoursList();
     void showPlaceList();
@@ -22,6 +22,7 @@ public:
     int randomIndex();
     QString sign = "a1";
     QString colour = "black";
+    int result = 0;
 
 private slots:
 
@@ -32,7 +33,7 @@ private slots:
     void on_pushButtonShowBoard_clicked();
 
 private:
-    Ui::MainWindow *ui;
+    Ui::Chess_Flashcards *ui;
 
     QStringList placesList = {"a1","a2","a3","a4","a5","a6","a7","a8",
                              "b1","b2","b3","b4","b5","b6","b7","b8",
@@ -54,4 +55,4 @@ private:
 
     void on_pushButtonDoSomething_clicked();
 };
-#endif // MAINWINDOW_H
+#endif // CHESS_FLASHCARDS_H
