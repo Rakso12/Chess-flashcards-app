@@ -77,18 +77,23 @@ void Chess_Flashcards::on_pushButtonWhiteOption_clicked()
 {
     if(colour == "white"){
         qDebug() << sign << "White place, nice!";
-        ++result;
+        result =  result + 1;
         ui->progressBar->setValue(result);
     }
+    if(result > 20){
+        quint32 value = randomIndex();
+        QStringList tmp_places = getPlaceList();
+        QStringList tmp_colours = getColoursList();
 
-    quint32 value = randomIndex();
-    QStringList tmp_places = getPlaceList();
-    QStringList tmp_colours = getColoursList();
+        sign = tmp_places[value];
+        colour = tmp_colours[value];
 
-    sign = tmp_places[value];
-    colour = tmp_colours[value];
-
-    ui->optionLabel->setText(sign);
+        ui->optionLabel->setText(sign);
+    }
+    else if(result == 20){
+        ui->optionLabel->setText("Good job!");
+    }
+    qDebug() << result;
 }
 
 /*!
@@ -98,18 +103,25 @@ void Chess_Flashcards::on_pushButtonWhiteOption_clicked()
 void Chess_Flashcards::on_pushButtonBlackOption_clicked()
 {
     if(colour == "black"){
-        qDebug() << sign << "Black place, nice!";
-        ++result;
+        qDebug() << sign << "White place, nice!";
+        result =  result + 1;
         ui->progressBar->setValue(result);
     }
-    quint32 value = randomIndex();
-    QStringList tmp_places = getPlaceList();
-    QStringList tmp_colours = getColoursList();
 
-    sign = tmp_places[value];
-    colour = tmp_colours[value];
+    if(result > 20){
+        quint32 value = randomIndex();
+        QStringList tmp_places = getPlaceList();
+        QStringList tmp_colours = getColoursList();
 
-    ui->optionLabel->setText(sign);
+        sign = tmp_places[value];
+        colour = tmp_colours[value];
+
+        ui->optionLabel->setText(sign);
+    }
+    else if(result == 20){
+        ui->optionLabel->setText("Good job!");
+    }
+    qDebug() << result;
 }
 
 /*!
